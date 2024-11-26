@@ -88,3 +88,4 @@ API Audio/API Audio/x64/Debug/vc143.pdb
 API Audio/Debug/API Audio.exe
 API Audio/Debug/API Audio.pdb
 API Audio/x64/Debug/API Audio.pdb
+*.tlog

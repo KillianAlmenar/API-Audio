@@ -20,6 +20,8 @@ int Play(const char* fileName) {
     ALuint uiBuffer;
     ALint iState;
 
+    Stop();
+
     // Generate an AL Buffer
     alGenBuffers(1, &uiBuffer);
 
@@ -42,16 +44,14 @@ int Play(const char* fileName) {
     return 0;
 }
 
-void Pause() 
-{
+void Pause() {
     if (uiSource) {
         alSourcePause(uiSource);
     }
 }
 
 // Pour continuer la lecture après pause
-void Resume() 
-{
+void Resume() {
     if (uiSource) {
         alSourcePlay(uiSource);
     }
@@ -59,8 +59,10 @@ void Resume()
 
 void Stop()
 {
-    alSourceStop(uiSource);
-
+    if (uiSource) 
+    {
+        alSourceStop(uiSource);
+    }
 }
 
 // Nettoyage des ressources

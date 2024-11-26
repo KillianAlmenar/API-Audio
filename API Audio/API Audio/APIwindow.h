@@ -130,7 +130,7 @@ namespace APIAudio {
 
 	private: System::Void Stop_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		Stop();
+		//Stop();
 	}
 
 	private: System::Void PauseBtn_Click(System::Object^ sender, System::EventArgs^ e)

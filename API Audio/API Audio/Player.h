@@ -5,3 +5,4 @@ int init();
 void Pause();
 void Resume();
 void Stop();
+void Cleanup();
