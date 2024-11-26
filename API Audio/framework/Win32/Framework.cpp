@@ -117,11 +117,12 @@ ALboolean ALFWInitOpenAL()
 		ALFWprintf("\nSelect OpenAL Device:\n");
 		for (i = 0; i < pDeviceList->GetNumDevices(); i++) 
 			ALFWprintf("%d. %s%s\n", i + 1, pDeviceList->GetDeviceName(i), i == pDeviceList->GetDefaultDevice() ? "(DEFAULT)" : "");
-	
+	/*
 		do {
 			ALchar ch = _getch();
 			i = atoi(&ch);
 		} while ((i < 1) || (i > pDeviceList->GetNumDevices()));
+		*/
 
 		pDevice = alcOpenDevice(pDeviceList->GetDeviceName(i - 1));
 		if (pDevice)

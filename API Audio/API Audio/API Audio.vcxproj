@@ -129,6 +129,7 @@
     <ClCompile Include="..\framework\Win32\Framework.cpp" />
     <ClCompile Include="..\framework\Win32\LoadOAL.cpp" />
     <ClCompile Include="APIwindow.cpp" />
+    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\framework\Win32\aldlist.h" />
@@ -138,6 +139,12 @@
     <ClInclude Include="APIwindow.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Player.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="APIwindow.resx">
+      <DependentUpon>APIwindow.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

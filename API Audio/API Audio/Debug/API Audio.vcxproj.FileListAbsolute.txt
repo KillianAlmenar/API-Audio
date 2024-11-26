@@ -1,1 +1,3 @@
 D:\Git\API-Audio\API Audio\API Audio\Debug\API Audio.vcxproj.AssemblyReference.cache
+D:\Git\API-Audio\API Audio\API Audio\Debug\APIAudio.APIwindow.resources
+D:\Git\API-Audio\API Audio\API Audio\Debug\API Audio.vcxproj.GenerateResource.cache
