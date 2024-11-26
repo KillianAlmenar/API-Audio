@@ -78,9 +78,10 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Framework\Win32;include;libs</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies />
+      <AdditionalDependencies>winmm.lib;libs\win32\OpenAL32.lib</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>Main</EntryPointSymbol>
     </Link>
@@ -89,9 +90,10 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>Framework\Win32;include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalDependencies />
+      <AdditionalDependencies>winmm.lib;libs\win32\OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <EntryPointSymbol>Main</EntryPointSymbol>
     </Link>
@@ -122,9 +124,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\framework\Win32\aldlist.cpp" />
+    <ClCompile Include="..\framework\Win32\CWaves.cpp" />
+    <ClCompile Include="..\framework\Win32\Framework.cpp" />
+    <ClCompile Include="..\framework\Win32\LoadOAL.cpp" />
     <ClCompile Include="APIwindow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\framework\Win32\aldlist.h" />
+    <ClInclude Include="..\framework\Win32\CWaves.h" />
+    <ClInclude Include="..\framework\Win32\Framework.h" />
+    <ClInclude Include="..\framework\Win32\LoadOAL.h" />
     <ClInclude Include="APIwindow.h">
       <FileType>CppForm</FileType>
     </ClInclude>
