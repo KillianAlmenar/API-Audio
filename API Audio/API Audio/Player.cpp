@@ -1,30 +1,32 @@
 #include "Player.h"
 #include "../framework/Win32/Framework.h"
 
+// Déclaration globale de la source
+ALuint uiSource = 0;
 
 int init() {
     // Initialize Framework
     ALFWInit();
-    if (!ALFWInitOpenAL())
-    {
-       ALFWShutdown();
-       return 0;
+
+    if (!ALFWInitOpenAL()) {
+        ALFWShutdown();
+        return 0;
     }
+
+    return 1;
 }
 
-int Play(const char* fileName)
-{
-    ALuint      uiBuffer;
-    ALuint      uiSource;
-    ALint       iState;
+int Play(const char* fileName) {
+    ALuint uiBuffer;
+    ALint iState;
 
     // Generate an AL Buffer
     alGenBuffers(1, &uiBuffer);
 
     // Load Wave file into OpenAL Buffer
-    if (!ALFWLoadWaveToBuffer((char*)fileName, uiBuffer))
-    {
+    if (!ALFWLoadWaveToBuffer((char*)fileName, uiBuffer)) {
         ALFWprintf("Failed to load %s\n", fileName);
+        return -1;
     }
 
     // Generate a Source to playback the Buffer
@@ -32,30 +34,35 @@ int Play(const char* fileName)
 
     // Attach Source to Buffer
     alSourcei(uiSource, AL_BUFFER, uiBuffer);
-    //pour boucler un son
-    alSourcei(uiSource, AL_LOOPING, 1);
+    alSourcei(uiSource, AL_LOOPING, AL_TRUE); // Pour jouer en boucle
+
     // Play Source
     alSourcePlay(uiSource);
 
-    /*
-    do
-    {
-        Sleep(100);
-        ALFWprintf(".");
-        // Get Source State
-        alGetSourcei(uiSource, AL_SOURCE_STATE, &iState);
-    } while (iState == AL_PLAYING);
-    */
+    return 0;
+}
 
-    // Clean up by deleting Source(s) and Buffer(s)
-    /*
-    alSourceStop(uiSource);
-    alDeleteSources(1, &uiSource);
-    alDeleteBuffers(1, &uiBuffer);
+void Pause() {
+    if (uiSource) {
+        alSourcePause(uiSource);
+    }
+}
+
+// Pour continuer la lecture après pause
+void Resume() {
+    if (uiSource) {
+        alSourcePlay(uiSource);
+    }
+}
+
+// Nettoyage des ressources
+void Cleanup() {
+    if (uiSource) {
+        alSourceStop(uiSource);
+        alDeleteSources(1, &uiSource);
+        uiSource = 0; // Réinitialiser la source
+    }
 
     ALFWShutdownOpenAL();
-
     ALFWShutdown();
-    */
-    return 0;
 }
