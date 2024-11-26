@@ -86,6 +86,7 @@ namespace APIAudio {
 			this->PauseBtn->TabIndex = 1;
 			this->PauseBtn->Text = L"Pause";
 			this->PauseBtn->UseVisualStyleBackColor = true;
+			this->PauseBtn->Click += gcnew System::EventHandler(this, &APIwindow::PauseBtn_Click);
 			// 
 			// StopBtn
 			// 
@@ -105,6 +106,7 @@ namespace APIAudio {
 			this->ResumeBtn->TabIndex = 3;
 			this->ResumeBtn->Text = L"Resume";
 			this->ResumeBtn->UseVisualStyleBackColor = true;
+			this->ResumeBtn->Click += gcnew System::EventHandler(this, &APIwindow::ResumeBtn_Click);
 			// 
 			// APIwindow
 			// 
@@ -126,10 +128,19 @@ namespace APIAudio {
 		Play(MUSIC_01);
 	}
 
-	private: System::Void Stop_Click(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void Stop_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-
+		Stop();
 	}
 
+	private: System::Void PauseBtn_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		Pause();
+	}
+
+	private: System::Void ResumeBtn_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		Resume();
+	}
 };
 }

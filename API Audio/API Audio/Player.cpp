@@ -42,17 +42,25 @@ int Play(const char* fileName) {
     return 0;
 }
 
-void Pause() {
+void Pause() 
+{
     if (uiSource) {
         alSourcePause(uiSource);
     }
 }
 
 // Pour continuer la lecture après pause
-void Resume() {
+void Resume() 
+{
     if (uiSource) {
         alSourcePlay(uiSource);
     }
+}
+
+void Stop()
+{
+    alSourceStop(uiSource);
+
 }
 
 // Nettoyage des ressources
