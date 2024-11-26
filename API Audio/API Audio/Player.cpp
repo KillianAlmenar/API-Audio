@@ -16,6 +16,7 @@ int init() {
     return 1;
 }
 
+
 int Play(const char* fileName) {
     ALuint uiBuffer;
     ALint iState;
@@ -40,7 +41,7 @@ int Play(const char* fileName) {
 
     // Play Source
     alSourcePlay(uiSource);
-
+    
     return 0;
 }
 
