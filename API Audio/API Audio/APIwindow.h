@@ -213,7 +213,6 @@ namespace APIAudio {
 		const char* word = stdString.c_str();
 
 		Play(word);
-		label1->Text = Playlist[currentSong];
 	}
 
 	private: System::Void Stop_Click(System::Object^ sender, System::EventArgs^ e)
@@ -249,7 +248,11 @@ namespace APIAudio {
 
 		String^ filePath = openFileDialog->FileName;
 
-		Console::WriteLine("Fichier sélectionné : " + filePath);
+		int splitSize = filePath->Split('\\')->Length;
+
+		Playlist->Add(filePath);
+
+		label1->Text = filePath->Split('\\')[splitSize - 1];
 
 	}
 	};
