@@ -104,37 +104,40 @@ namespace APIAudio {
 			// 
 			// PlayBtn
 			// 
-			this->PlayBtn->Location = System::Drawing::Point(12, 248);
+			this->PlayBtn->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"PlayBtn.BackgroundImage")));
+			this->PlayBtn->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->PlayBtn->Location = System::Drawing::Point(12, 235);
 			this->PlayBtn->Name = L"PlayBtn";
-			this->PlayBtn->Size = System::Drawing::Size(75, 23);
+			this->PlayBtn->Size = System::Drawing::Size(45, 36);
 			this->PlayBtn->TabIndex = 0;
-			this->PlayBtn->Text = L"Play";
 			this->PlayBtn->UseVisualStyleBackColor = true;
 			this->PlayBtn->Click += gcnew System::EventHandler(this, &APIwindow::Play_Click);
 			// 
 			// PauseBtn
 			// 
-			this->PauseBtn->Location = System::Drawing::Point(93, 248);
+			this->PauseBtn->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"PauseBtn.BackgroundImage")));
+			this->PauseBtn->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->PauseBtn->Location = System::Drawing::Point(63, 235);
 			this->PauseBtn->Name = L"PauseBtn";
-			this->PauseBtn->Size = System::Drawing::Size(75, 23);
+			this->PauseBtn->Size = System::Drawing::Size(43, 36);
 			this->PauseBtn->TabIndex = 1;
-			this->PauseBtn->Text = L"Pause";
 			this->PauseBtn->UseVisualStyleBackColor = true;
 			this->PauseBtn->Click += gcnew System::EventHandler(this, &APIwindow::PauseBtn_Click);
 			// 
 			// StopBtn
 			// 
-			this->StopBtn->Location = System::Drawing::Point(255, 248);
+			this->StopBtn->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"StopBtn.BackgroundImage")));
+			this->StopBtn->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->StopBtn->Location = System::Drawing::Point(193, 235);
 			this->StopBtn->Name = L"StopBtn";
-			this->StopBtn->Size = System::Drawing::Size(75, 23);
+			this->StopBtn->Size = System::Drawing::Size(41, 36);
 			this->StopBtn->TabIndex = 2;
-			this->StopBtn->Text = L"Stop";
 			this->StopBtn->UseVisualStyleBackColor = true;
 			this->StopBtn->Click += gcnew System::EventHandler(this, &APIwindow::Stop_Click);
 			// 
 			// ResumeBtn
 			// 
-			this->ResumeBtn->Location = System::Drawing::Point(174, 248);
+			this->ResumeBtn->Location = System::Drawing::Point(112, 242);
 			this->ResumeBtn->Name = L"ResumeBtn";
 			this->ResumeBtn->Size = System::Drawing::Size(75, 23);
 			this->ResumeBtn->TabIndex = 3;
