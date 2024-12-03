@@ -203,7 +203,7 @@ namespace APIAudio {
 			this->Controls->Add(this->PauseBtn);
 			this->Controls->Add(this->PlayBtn);
 			this->Name = L"APIwindow";
-			this->Text = L"APIwindow";
+			this->Text = L"API OpenAl";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->VolumeBar))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
