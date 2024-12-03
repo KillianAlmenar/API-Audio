@@ -21,6 +21,8 @@ int Play(const char* fileName) {
     ALuint uiBuffer;
     ALint iState;
 
+   
+
     Stop();
 
     // Generate an AL Buffer

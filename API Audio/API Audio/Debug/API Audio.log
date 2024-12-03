@@ -1,5 +1,5 @@
 ﻿  APIwindow.cpp
-D:\Git\API-Audio\API Audio\API Audio\APIwindow.h(223,22): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Git\API-Audio\API Audio\API Audio\APIwindow.h(241,22): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Player.cpp
 D:\Git\API-Audio\API Audio\API Audio\Player.cpp(22,11): warning C4101: 'iState': unreferenced local variable
   Generating Code...
