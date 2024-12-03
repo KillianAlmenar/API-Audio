@@ -2,7 +2,8 @@
 #include <vector>
 #include <array>
 #include <msclr/marshal_cppstd.h>
-#define MUSIC_01 "Enemy.wav"
+#include "PlayOgg.h"
+#define MUSIC_01 "D:/Git/API-Audio/API Audio/API Audio/Surprise.ogg"
 
 #pragma once
 namespace APIAudio {
@@ -265,7 +266,15 @@ namespace APIAudio {
 		std::string stdString = msclr::interop::marshal_as<std::string>(managedString);
 		const char* word = stdString.c_str();
 
-		Play(word);
+		if (managedString->Split('.')[managedString->Split('.')->Length - 1] == "wav")
+		{
+			Play(word);
+		}
+		else
+		{
+			PlayOgg(word);
+		}
+
 	}
 
 	private: System::Void Stop_Click(System::Object^ sender, System::EventArgs^ e)
@@ -295,7 +304,7 @@ namespace APIAudio {
 	private: System::Void OpenButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		OpenFileDialog^ openFileDialog = gcnew OpenFileDialog();
-		openFileDialog->Filter = "Fichiers WAV (*.wav)|*.wav";
+		openFileDialog->Filter = "Fichiers WAV (*.wav)|*.wav|Fichiers OGG (*.ogg)|*.ogg";
 
 		openFileDialog->ShowDialog();
 

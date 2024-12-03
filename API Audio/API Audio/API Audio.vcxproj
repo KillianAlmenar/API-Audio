@@ -130,6 +130,7 @@
     <ClCompile Include="..\framework\Win32\LoadOAL.cpp" />
     <ClCompile Include="APIwindow.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayOgg.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\framework\Win32\aldlist.h" />
@@ -140,6 +141,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayOgg.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="APIwindow.resx">
