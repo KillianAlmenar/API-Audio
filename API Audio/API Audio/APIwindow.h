@@ -145,6 +145,7 @@ namespace APIAudio {
 			this->VolumeBar->TabIndex = 5;
 			this->VolumeBar->TickStyle = System::Windows::Forms::TickStyle::Both;
 			this->VolumeBar->Value = 100;
+			this->VolumeBar->Scroll += gcnew System::EventHandler(this, &APIwindow::VolumeBar_Scroll);
 			// 
 			// richTextBox1
 			// 
@@ -217,5 +218,9 @@ namespace APIAudio {
 
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-};
+	private: System::Void VolumeBar_Scroll(System::Object^ sender, System::EventArgs^ e) 
+	{
+		SetVolume(VolumeBar->Value);
+	}
+	};
 }

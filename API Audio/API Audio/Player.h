@@ -6,3 +6,4 @@ void Pause();
 void Resume();
 void Stop();
 void Cleanup();
+void SetVolume(float volume);

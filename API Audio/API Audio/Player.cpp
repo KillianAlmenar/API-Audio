@@ -79,3 +79,15 @@ void Cleanup() {
     ALFWShutdownOpenAL();
     ALFWShutdown();
 }
+
+void SetVolume(float volume) 
+{
+    volume /= 100;
+    // Clamp le volume entre 0.0f et 1.0f
+    if (volume < 0.0f) volume = 0.0f;
+    if (volume > 1.0f) volume = 1.0f;
+
+    if (uiSource) {
+        alSourcef(uiSource, AL_GAIN, volume);
+    }
+}
