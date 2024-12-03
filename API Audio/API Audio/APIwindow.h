@@ -27,6 +27,7 @@ namespace APIAudio {
 	private: System::Windows::Forms::Button^ previousButton;
 	private: System::Windows::Forms::Button^ nextButton;
 	private: System::Windows::Forms::Button^ ExportPlaylistButton;
+	private: System::Windows::Forms::Button^ ImportPlaylistButton;
 
 		   int currentSong = 0;
 
@@ -97,6 +98,7 @@ namespace APIAudio {
 			this->previousButton = (gcnew System::Windows::Forms::Button());
 			this->nextButton = (gcnew System::Windows::Forms::Button());
 			this->ExportPlaylistButton = (gcnew System::Windows::Forms::Button());
+			this->ImportPlaylistButton = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->VolumeBar))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -217,19 +219,30 @@ namespace APIAudio {
 			// 
 			// ExportPlaylistButton
 			// 
-			this->ExportPlaylistButton->Location = System::Drawing::Point(111, 13);
+			this->ExportPlaylistButton->Location = System::Drawing::Point(93, 13);
 			this->ExportPlaylistButton->Name = L"ExportPlaylistButton";
-			this->ExportPlaylistButton->Size = System::Drawing::Size(110, 29);
+			this->ExportPlaylistButton->Size = System::Drawing::Size(82, 29);
 			this->ExportPlaylistButton->TabIndex = 13;
 			this->ExportPlaylistButton->Text = L"Export Playlist";
 			this->ExportPlaylistButton->UseVisualStyleBackColor = true;
 			this->ExportPlaylistButton->Click += gcnew System::EventHandler(this, &APIwindow::ExportPlaylistButton_Click);
+			// 
+			// ImportPlaylistButton
+			// 
+			this->ImportPlaylistButton->Location = System::Drawing::Point(181, 13);
+			this->ImportPlaylistButton->Name = L"ImportPlaylistButton";
+			this->ImportPlaylistButton->Size = System::Drawing::Size(82, 29);
+			this->ImportPlaylistButton->TabIndex = 14;
+			this->ImportPlaylistButton->Text = L"Import Playlist";
+			this->ImportPlaylistButton->UseVisualStyleBackColor = true;
+			this->ImportPlaylistButton->Click += gcnew System::EventHandler(this, &APIwindow::ImportPlaylistButton_Click);
 			// 
 			// APIwindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(512, 303);
+			this->Controls->Add(this->ImportPlaylistButton);
 			this->Controls->Add(this->ExportPlaylistButton);
 			this->Controls->Add(this->nextButton);
 			this->Controls->Add(this->previousButton);
@@ -377,6 +390,56 @@ namespace APIAudio {
 		}
 	}
 
+
+	private: System::Void ImportPlaylistButton_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		// Créer une instance de OpenFileDialog
+		OpenFileDialog^ openFileDialog = gcnew OpenFileDialog();
+
+		// Configuration de l'OpenFileDialog
+		openFileDialog->Filter = "Fichiers texte (*.txt)|*.txt"; // Types de fichiers pris en charge
+		openFileDialog->Title = "Importer une playlist";
+
+		// Afficher le dialogue et vérifier si l'utilisateur a sélectionné un fichier
+		if (openFileDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+			String^ filePath = openFileDialog->FileName; // Récupère le chemin complet du fichier sélectionné
+
+			StreamReader^ reader = nullptr; // Déclare le StreamReader en dehors du try
+			try {
+				// Initialisation du StreamReader
+				reader = gcnew StreamReader(filePath);
+
+				// Nettoyer la liste avant d'importer les nouvelles lignes
+				Playlist->Clear();
+
+				// Lire chaque ligne du fichier et l'ajouter à la liste
+				String^ line;
+				while ((line = reader->ReadLine()) != nullptr) {
+					Playlist->Add(line);
+				}
+
+				// Message de confirmation
+				MessageBox::Show("Playlist importée avec succès depuis : " + filePath,
+					"Importation réussie", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			}
+			catch (Exception^ ex) {
+				// Gestion des erreurs
+				MessageBox::Show("Erreur lors de l'importation : " + ex->Message,
+					"Erreur", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+			finally {
+				// Fermeture explicite du StreamReader
+				if (reader != nullptr) {
+					reader->Close();
+				}
+			}
+		}
+
+		int splitSize = Playlist[currentSong]->Split('\\')->Length;
+		label1->Text = Playlist[currentSong]->Split('\\')[splitSize - 1];
+
+		richTextBox1->AppendText(label1->Text + "\n");
+	}
 
 	};
 }
