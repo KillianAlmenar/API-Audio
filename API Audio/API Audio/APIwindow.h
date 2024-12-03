@@ -169,12 +169,14 @@ namespace APIAudio {
 			// 
 			// label1
 			// 
+			this->label1->AutoEllipsis = true;
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(63, 60);
+			this->label1->Location = System::Drawing::Point(85, 60);
+			this->label1->MaximumSize = System::Drawing::Size(150, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(277, 13);
+			this->label1->Size = System::Drawing::Size(59, 13);
 			this->label1->TabIndex = 9;
-			this->label1->Text = L"ssssssssssssssssssssssssssssssssssssssssssssssssssssss";
+			this->label1->Text = L"song name";
 			this->label1->Click += gcnew System::EventHandler(this, &APIwindow::label1_Click);
 			// 
 			// listView1
