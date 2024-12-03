@@ -1,9 +1,5 @@
 #include "Player.h"
-#include <vector>
-#include <array>
-#include <msclr/marshal_cppstd.h>
 #define MUSIC_01 "Enemy.wav"
-
 #pragma once
 namespace APIAudio {
 
@@ -13,17 +9,12 @@ namespace APIAudio {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+
 	/// <summary>
 	/// Summary for APIwindow
 	/// </summary>
-	/// 
-
 	public ref class APIwindow : public System::Windows::Forms::Form
 	{
-	private:
-		System::Collections::Generic::List<String^>^ Playlist = gcnew System::Collections::Generic::List<String^>();
-		int currentSong = 0;
-
 	public:
 		APIwindow(void)
 		{
@@ -143,7 +134,6 @@ namespace APIAudio {
 			this->OpenButton->TabIndex = 4;
 			this->OpenButton->Text = L"Open";
 			this->OpenButton->UseVisualStyleBackColor = true;
-			this->OpenButton->Click += gcnew System::EventHandler(this, &APIwindow::OpenButton_Click);
 			// 
 			// VolumeBar
 			// 
@@ -199,7 +189,7 @@ namespace APIAudio {
 			this->Controls->Add(this->PauseBtn);
 			this->Controls->Add(this->PlayBtn);
 			this->Name = L"APIwindow";
-			this->Text = L"APIwindow";
+			this->Text = L"APi Audio OpenAl";
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->VolumeBar))->EndInit();
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -208,12 +198,7 @@ namespace APIAudio {
 #pragma endregion
 	private: System::Void Play_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		String^ managedString = Playlist[currentSong];
-		std::string stdString = msclr::interop::marshal_as<std::string>(managedString);
-		const char* word = stdString.c_str();
-
-		Play(word);
-		label1->Text = Playlist[currentSong];
+		Play(MUSIC_01);
 	}
 
 	private: System::Void Stop_Click(System::Object^ sender, System::EventArgs^ e)
@@ -231,26 +216,11 @@ namespace APIAudio {
 		Resume();
 	}
 
-	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e)
-	{
-
+	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-
 	private: System::Void VolumeBar_Scroll(System::Object^ sender, System::EventArgs^ e)
 	{
 		SetVolume(VolumeBar->Value);
 	}
-	private: System::Void OpenButton_Click(System::Object^ sender, System::EventArgs^ e)
-	{
-		OpenFileDialog^ openFileDialog = gcnew OpenFileDialog();
-		openFileDialog->Filter = "Tous les fichiers (*.*)|*.*|Fichiers WAV (*.wav)|*.wav";
-
-		openFileDialog->ShowDialog();
-
-		String^ filePath = openFileDialog->FileName;
-
-		Console::WriteLine("Fichier sélectionné : " + filePath);
-
-	}
-	};
+};
 }
