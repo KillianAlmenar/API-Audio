@@ -300,7 +300,9 @@ namespace APIAudio {
 		const char* word = stdString.c_str();
 
 		Play(word);
+
 		SetVolume(VolumeBar->Value);
+		label1->Text = Playlist[currentSong];
 	}
 	private: System::Void previousButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -314,6 +316,7 @@ namespace APIAudio {
 
 		Play(word);
 		SetVolume(VolumeBar->Value);
+		label1->Text = Playlist[currentSong];
 	}
 	};
 }
