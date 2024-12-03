@@ -1,8 +1,7 @@
-﻿  Player.cpp
-D:\Git\API-Audio\API Audio\API Audio\Player.cpp(22,11): warning C4101: 'iState': unreferenced local variable
-  aldlist.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
-Framework.obj : warning LNK4248: unresolved typeref token (0100001C) for 'ALCdevice_struct'; image may not run
-aldlist.obj : warning LNK4248: unresolved typeref token (0100001B) for 'ALCdevice_struct'; image may not run
-Framework.obj : warning LNK4248: unresolved typeref token (0100001B) for 'ALCcontext_struct'; image may not run
-aldlist.obj : warning LNK4248: unresolved typeref token (0100001C) for 'ALCcontext_struct'; image may not run
-  API Audio.vcxproj -> D:\Git\API-Audio\API Audio\Debug\API Audio.exe
+﻿  APIwindow.cpp
+  aldlist.obj : module MSIL détecté ; liens incrémentiels désactivés pour MSIL ; édition de liens complète en cours
+Framework.obj : warning LNK4248: jeton typeref non résolu (0100001C) pour 'ALCdevice_struct' ; l'image risque de ne pas s'exécuter
+aldlist.obj : warning LNK4248: jeton typeref non résolu (0100001B) pour 'ALCdevice_struct' ; l'image risque de ne pas s'exécuter
+Framework.obj : warning LNK4248: jeton typeref non résolu (0100001B) pour 'ALCcontext_struct' ; l'image risque de ne pas s'exécuter
+aldlist.obj : warning LNK4248: jeton typeref non résolu (0100001C) pour 'ALCcontext_struct' ; l'image risque de ne pas s'exécuter
+  API Audio.vcxproj -> D:\ldeurveilher\Tools\Git\ApiAudio\API-Audio\API Audio\Debug\API Audio.exe
