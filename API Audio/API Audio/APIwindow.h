@@ -262,7 +262,7 @@ namespace APIAudio {
 #pragma endregion
 	private: System::Void Play_Click(System::Object^ sender, System::EventArgs^ e)
 	{
-		if (Playlist[currentSong]->Length == 0)
+		if (Playlist->Count <= 0)
 		{
 			return;
 		}
