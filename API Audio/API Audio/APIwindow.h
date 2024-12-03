@@ -48,8 +48,9 @@ namespace APIAudio {
 	private: System::Windows::Forms::Button^ OpenButton;
 	private: System::Windows::Forms::TrackBar^ VolumeBar;
 	private: System::Windows::Forms::RichTextBox^ richTextBox1;
-	private: System::Windows::Forms::TextBox^ MusicName;
+
 	private: System::Windows::Forms::ProgressBar^ ProgressBar;
+	private: System::Windows::Forms::Label^ label1;
 
 	protected:
 
@@ -76,8 +77,8 @@ namespace APIAudio {
 			this->OpenButton = (gcnew System::Windows::Forms::Button());
 			this->VolumeBar = (gcnew System::Windows::Forms::TrackBar());
 			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
-			this->MusicName = (gcnew System::Windows::Forms::TextBox());
 			this->ProgressBar = (gcnew System::Windows::Forms::ProgressBar());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->VolumeBar))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -153,14 +154,6 @@ namespace APIAudio {
 			this->richTextBox1->TabIndex = 6;
 			this->richTextBox1->Text = L"";
 			// 
-			// MusicName
-			// 
-			this->MusicName->BorderStyle = System::Windows::Forms::BorderStyle::None;
-			this->MusicName->Location = System::Drawing::Point(83, 60);
-			this->MusicName->Name = L"MusicName";
-			this->MusicName->Size = System::Drawing::Size(149, 13);
-			this->MusicName->TabIndex = 7;
-			// 
 			// ProgressBar
 			// 
 			this->ProgressBar->Location = System::Drawing::Point(83, 205);
@@ -170,13 +163,23 @@ namespace APIAudio {
 			this->ProgressBar->TabIndex = 8;
 			this->ProgressBar->Value = 50;
 			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Location = System::Drawing::Point(133, 60);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(35, 13);
+			this->label1->TabIndex = 9;
+			this->label1->Text = L"label1";
+			this->label1->Click += gcnew System::EventHandler(this, &APIwindow::label1_Click);
+			// 
 			// APIwindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(512, 303);
+			this->Controls->Add(this->label1);
 			this->Controls->Add(this->ProgressBar);
-			this->Controls->Add(this->MusicName);
 			this->Controls->Add(this->richTextBox1);
 			this->Controls->Add(this->VolumeBar);
 			this->Controls->Add(this->OpenButton);
@@ -212,5 +215,7 @@ namespace APIAudio {
 		Resume();
 	}
 
-	};
+	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }
