@@ -13,6 +13,7 @@ namespace APIAudio {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace System::IO;
 	/// <summary>
 	/// Summary for APIwindow
 	/// </summary>
@@ -25,6 +26,7 @@ namespace APIAudio {
 	private: System::Windows::Forms::RichTextBox^ richTextBox1;
 	private: System::Windows::Forms::Button^ previousButton;
 	private: System::Windows::Forms::Button^ nextButton;
+	private: System::Windows::Forms::Button^ ExportPlaylistButton;
 
 		   int currentSong = 0;
 
@@ -94,6 +96,7 @@ namespace APIAudio {
 			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
 			this->previousButton = (gcnew System::Windows::Forms::Button());
 			this->nextButton = (gcnew System::Windows::Forms::Button());
+			this->ExportPlaylistButton = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->VolumeBar))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -212,11 +215,22 @@ namespace APIAudio {
 			this->nextButton->UseVisualStyleBackColor = true;
 			this->nextButton->Click += gcnew System::EventHandler(this, &APIwindow::nextButton_Click);
 			// 
+			// ExportPlaylistButton
+			// 
+			this->ExportPlaylistButton->Location = System::Drawing::Point(111, 13);
+			this->ExportPlaylistButton->Name = L"ExportPlaylistButton";
+			this->ExportPlaylistButton->Size = System::Drawing::Size(110, 29);
+			this->ExportPlaylistButton->TabIndex = 13;
+			this->ExportPlaylistButton->Text = L"Export Playlist";
+			this->ExportPlaylistButton->UseVisualStyleBackColor = true;
+			this->ExportPlaylistButton->Click += gcnew System::EventHandler(this, &APIwindow::ExportPlaylistButton_Click);
+			// 
 			// APIwindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(512, 303);
+			this->Controls->Add(this->ExportPlaylistButton);
 			this->Controls->Add(this->nextButton);
 			this->Controls->Add(this->previousButton);
 			this->Controls->Add(this->richTextBox1);
@@ -320,5 +334,49 @@ namespace APIAudio {
 		int splitSize = Playlist[currentSong]->Split('\\')->Length;
 		label1->Text = Playlist[currentSong]->Split('\\')[splitSize - 1];
 	}
+
+	private: System::Void ExportPlaylistButton_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		// Créer une instance de SaveFileDialog
+		SaveFileDialog^ saveFileDialog = gcnew SaveFileDialog();
+
+		// Configuration du SaveFileDialog
+		saveFileDialog->Filter = "Fichiers texte (*.txt)|*.txt"; // Types de fichiers pris en charge
+		saveFileDialog->Title = "Enregistrer la playlist";
+		saveFileDialog->FileName = "playlist.txt"; // Nom de fichier par défaut
+
+
+		if (saveFileDialog->ShowDialog() == System::Windows::Forms::DialogResult::OK) {
+			String^ filePath = saveFileDialog->FileName; // Récupère le chemin choisi
+
+			StreamWriter^ writer = nullptr; // Déclare le StreamWriter en dehors du try
+			try {
+				// Initialisation du StreamWriter
+				writer = gcnew StreamWriter(filePath);
+
+				// Écrit chaque ligne de la liste dans le fichier
+				for each (String ^ song in Playlist) {
+					writer->WriteLine(song);
+				}
+
+				// Message de confirmation
+				MessageBox::Show("Playlist exportée avec succès dans : " + filePath,
+					"Exportation réussie", MessageBoxButtons::OK, MessageBoxIcon::Information);
+			}
+			catch (Exception^ ex) {
+				// Gestion des erreurs
+				MessageBox::Show("Erreur lors de l'exportation : " + ex->Message,
+					"Erreur", MessageBoxButtons::OK, MessageBoxIcon::Error);
+			}
+			finally {
+				// Fermeture explicite du StreamWriter
+				if (writer != nullptr) {
+					writer->Close();
+				}
+			}
+		}
+	}
+
+
 	};
 }
