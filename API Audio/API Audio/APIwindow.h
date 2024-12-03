@@ -416,6 +416,8 @@ namespace APIAudio {
 				String^ line;
 				while ((line = reader->ReadLine()) != nullptr) {
 					Playlist->Add(line);
+					int splitSize = line->Split('\\')->Length;
+					richTextBox1->AppendText(line->Split('\\')[splitSize - 1] + "\n");
 				}
 
 				// Message de confirmation
