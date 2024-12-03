@@ -262,6 +262,10 @@ namespace APIAudio {
 #pragma endregion
 	private: System::Void Play_Click(System::Object^ sender, System::EventArgs^ e)
 	{
+		if (Playlist[currentSong]->Length == 0)
+		{
+			return;
+		}
 		String^ managedString = Playlist[currentSong];
 		std::string stdString = msclr::interop::marshal_as<std::string>(managedString);
 		const char* word = stdString.c_str();
