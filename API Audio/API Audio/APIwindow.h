@@ -299,7 +299,7 @@ namespace APIAudio {
 	private: System::Void OpenButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		OpenFileDialog^ openFileDialog = gcnew OpenFileDialog();
-		openFileDialog->Filter = "Tous les fichiers (*.*)|*.*|Fichiers WAV (*.wav)|*.wav";
+		openFileDialog->Filter = "Fichiers WAV (*.wav)|*.wav";
 
 		openFileDialog->ShowDialog();
 
@@ -440,7 +440,6 @@ namespace APIAudio {
 		int splitSize = Playlist[currentSong]->Split('\\')->Length;
 		label1->Text = Playlist[currentSong]->Split('\\')[splitSize - 1];
 
-		richTextBox1->AppendText(label1->Text + "\n");
 	}
 
 	};
