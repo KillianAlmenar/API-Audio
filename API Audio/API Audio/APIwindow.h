@@ -284,7 +284,7 @@ namespace APIAudio {
 
 		label1->Text = filePath->Split('\\')[splitSize - 1];
 
-		richTextBox1->AppendText(filePath);
+		richTextBox1->AppendText(label1->Text + "\n");
 	}
 	private: System::Void nextButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -302,7 +302,8 @@ namespace APIAudio {
 		Play(word);
 
 		SetVolume(VolumeBar->Value);
-		label1->Text = Playlist[currentSong];
+		int splitSize = Playlist[currentSong]->Split('\\')->Length;
+		label1->Text = Playlist[currentSong]->Split('\\')[splitSize - 1];
 	}
 	private: System::Void previousButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
@@ -316,7 +317,8 @@ namespace APIAudio {
 
 		Play(word);
 		SetVolume(VolumeBar->Value);
-		label1->Text = Playlist[currentSong];
+		int splitSize = Playlist[currentSong]->Split('\\')->Length;
+		label1->Text = Playlist[currentSong]->Split('\\')[splitSize - 1];
 	}
 	};
 }
