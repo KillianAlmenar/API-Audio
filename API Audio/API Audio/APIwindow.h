@@ -218,9 +218,9 @@ namespace APIAudio {
 
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void VolumeBar_Scroll(System::Object^ sender, System::EventArgs^ e) 
+	private: System::Void VolumeBar_Scroll(System::Object^ sender, System::EventArgs^ e)
 	{
 		SetVolume(VolumeBar->Value);
 	}
-	};
+};
 }
