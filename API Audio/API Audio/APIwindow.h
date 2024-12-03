@@ -339,7 +339,14 @@ namespace APIAudio {
 		std::string stdString = msclr::interop::marshal_as<std::string>(managedString);
 		const char* word = stdString.c_str();
 
-		Play(word);
+		if (managedString->Split('.')[managedString->Split('.')->Length - 1] == "wav")
+		{
+			Play(word);
+		}
+		else
+		{
+			PlayOgg(word);
+		}
 
 		SetVolume(VolumeBar->Value);
 		int splitSize = Playlist[currentSong]->Split('\\')->Length;
@@ -359,7 +366,15 @@ namespace APIAudio {
 		std::string stdString = msclr::interop::marshal_as<std::string>(managedString);
 		const char* word = stdString.c_str();
 
-		Play(word);
+		if (managedString->Split('.')[managedString->Split('.')->Length - 1] == "wav")
+		{
+			Play(word);
+		}
+		else
+		{
+			PlayOgg(word);
+		}
+
 		SetVolume(VolumeBar->Value);
 		int splitSize = Playlist[currentSong]->Split('\\')->Length;
 		label1->Text = Playlist[currentSong]->Split('\\')[splitSize - 1];
