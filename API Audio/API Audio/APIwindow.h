@@ -22,7 +22,8 @@ namespace APIAudio {
 	{
 	private:
 		System::Collections::Generic::List<String^>^ Playlist = gcnew System::Collections::Generic::List<String^>();
-		int currentSong = 0;
+	private: System::Windows::Forms::ListView^ listView1;
+		   int currentSong = 0;
 
 	public:
 		APIwindow(void)
@@ -56,7 +57,7 @@ namespace APIAudio {
 	private: System::Windows::Forms::OpenFileDialog^ openFileDialog1;
 	private: System::Windows::Forms::Button^ OpenButton;
 	private: System::Windows::Forms::TrackBar^ VolumeBar;
-	private: System::Windows::Forms::RichTextBox^ richTextBox1;
+
 
 	private: System::Windows::Forms::ProgressBar^ ProgressBar;
 	private: System::Windows::Forms::Label^ label1;
@@ -85,9 +86,9 @@ namespace APIAudio {
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->OpenButton = (gcnew System::Windows::Forms::Button());
 			this->VolumeBar = (gcnew System::Windows::Forms::TrackBar());
-			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
 			this->ProgressBar = (gcnew System::Windows::Forms::ProgressBar());
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->listView1 = (gcnew System::Windows::Forms::ListView());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->VolumeBar))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -157,14 +158,6 @@ namespace APIAudio {
 			this->VolumeBar->Value = 100;
 			this->VolumeBar->Scroll += gcnew System::EventHandler(this, &APIwindow::VolumeBar_Scroll);
 			// 
-			// richTextBox1
-			// 
-			this->richTextBox1->Location = System::Drawing::Point(255, 39);
-			this->richTextBox1->Name = L"richTextBox1";
-			this->richTextBox1->Size = System::Drawing::Size(245, 190);
-			this->richTextBox1->TabIndex = 6;
-			this->richTextBox1->Text = L"";
-			// 
 			// ProgressBar
 			// 
 			this->ProgressBar->Location = System::Drawing::Point(83, 205);
@@ -177,21 +170,30 @@ namespace APIAudio {
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(133, 60);
+			this->label1->Location = System::Drawing::Point(63, 60);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(35, 13);
+			this->label1->Size = System::Drawing::Size(277, 13);
 			this->label1->TabIndex = 9;
-			this->label1->Text = L"label1";
+			this->label1->Text = L"ssssssssssssssssssssssssssssssssssssssssssssssssssssss";
 			this->label1->Click += gcnew System::EventHandler(this, &APIwindow::label1_Click);
+			// 
+			// listView1
+			// 
+			this->listView1->HideSelection = false;
+			this->listView1->Location = System::Drawing::Point(255, 60);
+			this->listView1->Name = L"listView1";
+			this->listView1->Size = System::Drawing::Size(232, 169);
+			this->listView1->TabIndex = 10;
+			this->listView1->UseCompatibleStateImageBehavior = false;
 			// 
 			// APIwindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(512, 303);
+			this->Controls->Add(this->listView1);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->ProgressBar);
-			this->Controls->Add(this->richTextBox1);
 			this->Controls->Add(this->VolumeBar);
 			this->Controls->Add(this->OpenButton);
 			this->Controls->Add(this->ResumeBtn);
