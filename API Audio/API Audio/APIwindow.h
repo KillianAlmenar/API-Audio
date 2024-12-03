@@ -22,7 +22,10 @@ namespace APIAudio {
 	{
 	private:
 		System::Collections::Generic::List<String^>^ Playlist = gcnew System::Collections::Generic::List<String^>();
-	private: System::Windows::Forms::ListView^ listView1;
+	private: System::Windows::Forms::RichTextBox^ richTextBox1;
+	private: System::Windows::Forms::Button^ previousButton;
+	private: System::Windows::Forms::Button^ nextButton;
+
 		   int currentSong = 0;
 
 	public:
@@ -88,7 +91,9 @@ namespace APIAudio {
 			this->VolumeBar = (gcnew System::Windows::Forms::TrackBar());
 			this->ProgressBar = (gcnew System::Windows::Forms::ProgressBar());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->listView1 = (gcnew System::Windows::Forms::ListView());
+			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
+			this->previousButton = (gcnew System::Windows::Forms::Button());
+			this->nextButton = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->VolumeBar))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -179,21 +184,42 @@ namespace APIAudio {
 			this->label1->Text = L"song name";
 			this->label1->Click += gcnew System::EventHandler(this, &APIwindow::label1_Click);
 			// 
-			// listView1
+			// richTextBox1
 			// 
-			this->listView1->HideSelection = false;
-			this->listView1->Location = System::Drawing::Point(255, 60);
-			this->listView1->Name = L"listView1";
-			this->listView1->Size = System::Drawing::Size(232, 169);
-			this->listView1->TabIndex = 10;
-			this->listView1->UseCompatibleStateImageBehavior = false;
+			this->richTextBox1->Location = System::Drawing::Point(255, 57);
+			this->richTextBox1->Name = L"richTextBox1";
+			this->richTextBox1->Size = System::Drawing::Size(245, 172);
+			this->richTextBox1->TabIndex = 10;
+			this->richTextBox1->Text = L"";
+			// 
+			// previousButton
+			// 
+			this->previousButton->Location = System::Drawing::Point(292, 28);
+			this->previousButton->Name = L"previousButton";
+			this->previousButton->Size = System::Drawing::Size(75, 23);
+			this->previousButton->TabIndex = 11;
+			this->previousButton->Text = L"previous";
+			this->previousButton->UseVisualStyleBackColor = true;
+			this->previousButton->Click += gcnew System::EventHandler(this, &APIwindow::previousButton_Click);
+			// 
+			// nextButton
+			// 
+			this->nextButton->Location = System::Drawing::Point(383, 28);
+			this->nextButton->Name = L"nextButton";
+			this->nextButton->Size = System::Drawing::Size(75, 23);
+			this->nextButton->TabIndex = 12;
+			this->nextButton->Text = L"next";
+			this->nextButton->UseVisualStyleBackColor = true;
+			this->nextButton->Click += gcnew System::EventHandler(this, &APIwindow::nextButton_Click);
 			// 
 			// APIwindow
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(512, 303);
-			this->Controls->Add(this->listView1);
+			this->Controls->Add(this->nextButton);
+			this->Controls->Add(this->previousButton);
+			this->Controls->Add(this->richTextBox1);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->ProgressBar);
 			this->Controls->Add(this->VolumeBar);
@@ -258,6 +284,27 @@ namespace APIAudio {
 
 		label1->Text = filePath->Split('\\')[splitSize - 1];
 
+		richTextBox1->AppendText(filePath);
+	}
+	private: System::Void nextButton_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		currentSong++;
+
+		String^ managedString = Playlist[currentSong];
+		std::string stdString = msclr::interop::marshal_as<std::string>(managedString);
+		const char* word = stdString.c_str();
+
+		Play(word);
+	}
+	private: System::Void previousButton_Click(System::Object^ sender, System::EventArgs^ e)
+	{
+		currentSong--;
+
+		String^ managedString = Playlist[currentSong];
+		std::string stdString = msclr::interop::marshal_as<std::string>(managedString);
+		const char* word = stdString.c_str();
+
+		Play(word);
 	}
 	};
 }
