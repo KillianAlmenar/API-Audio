@@ -290,21 +290,30 @@ namespace APIAudio {
 	{
 		currentSong++;
 
+		if (currentSong >= Playlist->Count)
+		{
+			currentSong = Playlist->Count - 1;
+		}
+
 		String^ managedString = Playlist[currentSong];
 		std::string stdString = msclr::interop::marshal_as<std::string>(managedString);
 		const char* word = stdString.c_str();
 
 		Play(word);
+		SetVolume(VolumeBar->Value);
 	}
 	private: System::Void previousButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
 		currentSong--;
 
+		if (currentSong < 0) currentSong = 0;
+
 		String^ managedString = Playlist[currentSong];
 		std::string stdString = msclr::interop::marshal_as<std::string>(managedString);
 		const char* word = stdString.c_str();
 
 		Play(word);
+		SetVolume(VolumeBar->Value);
 	}
 	};
 }
