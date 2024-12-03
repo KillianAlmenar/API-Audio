@@ -65,7 +65,7 @@ namespace APIAudio {
 	private: System::Windows::Forms::TrackBar^ VolumeBar;
 
 
-	private: System::Windows::Forms::ProgressBar^ ProgressBar;
+
 	private: System::Windows::Forms::Label^ label1;
 
 	protected:
@@ -85,6 +85,7 @@ namespace APIAudio {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(APIwindow::typeid));
 			this->PlayBtn = (gcnew System::Windows::Forms::Button());
 			this->PauseBtn = (gcnew System::Windows::Forms::Button());
 			this->StopBtn = (gcnew System::Windows::Forms::Button());
@@ -92,7 +93,6 @@ namespace APIAudio {
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->OpenButton = (gcnew System::Windows::Forms::Button());
 			this->VolumeBar = (gcnew System::Windows::Forms::TrackBar());
-			this->ProgressBar = (gcnew System::Windows::Forms::ProgressBar());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
 			this->previousButton = (gcnew System::Windows::Forms::Button());
@@ -168,20 +168,11 @@ namespace APIAudio {
 			this->VolumeBar->Value = 100;
 			this->VolumeBar->Scroll += gcnew System::EventHandler(this, &APIwindow::VolumeBar_Scroll);
 			// 
-			// ProgressBar
-			// 
-			this->ProgressBar->Location = System::Drawing::Point(83, 205);
-			this->ProgressBar->Name = L"ProgressBar";
-			this->ProgressBar->Size = System::Drawing::Size(149, 14);
-			this->ProgressBar->Step = 1;
-			this->ProgressBar->TabIndex = 8;
-			this->ProgressBar->Value = 50;
-			// 
 			// label1
 			// 
 			this->label1->AutoEllipsis = true;
 			this->label1->AutoSize = true;
-			this->label1->Location = System::Drawing::Point(85, 60);
+			this->label1->Location = System::Drawing::Point(109, 142);
 			this->label1->MaximumSize = System::Drawing::Size(150, 0);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(59, 13);
@@ -199,21 +190,23 @@ namespace APIAudio {
 			// 
 			// previousButton
 			// 
-			this->previousButton->Location = System::Drawing::Point(292, 28);
+			this->previousButton->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"previousButton.BackgroundImage")));
+			this->previousButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->previousButton->Location = System::Drawing::Point(335, 13);
 			this->previousButton->Name = L"previousButton";
-			this->previousButton->Size = System::Drawing::Size(75, 23);
+			this->previousButton->Size = System::Drawing::Size(41, 38);
 			this->previousButton->TabIndex = 11;
-			this->previousButton->Text = L"previous";
 			this->previousButton->UseVisualStyleBackColor = true;
 			this->previousButton->Click += gcnew System::EventHandler(this, &APIwindow::previousButton_Click);
 			// 
 			// nextButton
 			// 
-			this->nextButton->Location = System::Drawing::Point(383, 28);
+			this->nextButton->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"nextButton.BackgroundImage")));
+			this->nextButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->nextButton->Location = System::Drawing::Point(382, 13);
 			this->nextButton->Name = L"nextButton";
-			this->nextButton->Size = System::Drawing::Size(75, 23);
+			this->nextButton->Size = System::Drawing::Size(41, 38);
 			this->nextButton->TabIndex = 12;
-			this->nextButton->Text = L"next";
 			this->nextButton->UseVisualStyleBackColor = true;
 			this->nextButton->Click += gcnew System::EventHandler(this, &APIwindow::nextButton_Click);
 			// 
@@ -241,6 +234,7 @@ namespace APIAudio {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::SystemColors::AppWorkspace;
 			this->ClientSize = System::Drawing::Size(512, 303);
 			this->Controls->Add(this->ImportPlaylistButton);
 			this->Controls->Add(this->ExportPlaylistButton);
@@ -248,7 +242,6 @@ namespace APIAudio {
 			this->Controls->Add(this->previousButton);
 			this->Controls->Add(this->richTextBox1);
 			this->Controls->Add(this->label1);
-			this->Controls->Add(this->ProgressBar);
 			this->Controls->Add(this->VolumeBar);
 			this->Controls->Add(this->OpenButton);
 			this->Controls->Add(this->ResumeBtn);
@@ -315,6 +308,10 @@ namespace APIAudio {
 	}
 	private: System::Void nextButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
+		if (Playlist->Count <= 0)
+		{
+			return;
+		}
 		currentSong++;
 
 		if (currentSong >= Playlist->Count)
@@ -334,6 +331,10 @@ namespace APIAudio {
 	}
 	private: System::Void previousButton_Click(System::Object^ sender, System::EventArgs^ e)
 	{
+		if (Playlist->Count <= 0)
+		{
+			return;
+		}
 		currentSong--;
 
 		if (currentSong < 0) currentSong = 0;
