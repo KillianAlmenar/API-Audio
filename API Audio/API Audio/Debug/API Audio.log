@@ -1,8 +1,5 @@
 ﻿  APIwindow.cpp
 D:\Git\API-Audio\API Audio\API Audio\APIwindow.h(241,22): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Player.cpp
-D:\Git\API-Audio\API Audio\API Audio\Player.cpp(22,11): warning C4101: 'iState': unreferenced local variable
-  Generating Code...
   aldlist.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
 Framework.obj : warning LNK4248: unresolved typeref token (0100001C) for 'ALCdevice_struct'; image may not run
 aldlist.obj : warning LNK4248: unresolved typeref token (0100001B) for 'ALCdevice_struct'; image may not run
