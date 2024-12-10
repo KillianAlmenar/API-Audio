@@ -346,8 +346,7 @@ unsigned long DecodeOggVorbis(OggVorbis_File* psOggVorbisFile, char* pDecodeBuff
 		}
 	}
 
-	// Mono, Stereo and 4-Channel files decode into the same channel order as WAVEFORMATEXTENSIBLE,
-	// however 6-Channels files need to be re-ordered
+
 	if (ulChannels == 6)
 	{
 		pSamples = (short*)pDecodeBuffer;
